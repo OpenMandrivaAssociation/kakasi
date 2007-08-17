@@ -78,7 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/rdic_conv
 %{_bindir}/wx2_conv
 %{_libdir}/libkakasi.so.*
-%{_mandir}/ja/man1/kakasi.1.bz2
+%{_mandir}/ja/man1/kakasi.*
 %{_datadir}/kakasi/itaijidict
 
 %files devel
