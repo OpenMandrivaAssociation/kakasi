@@ -9,7 +9,6 @@ Source: http://kakasi.namazu.org/stable/kakasi-%{version}.tar.bz2
 URL: http://kakasi.namazu.org/
 License: GPL
 Group: System/Internationalization
-Buildroot: %{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 KAKASI is the language processing filter to convert Kanji characters 
