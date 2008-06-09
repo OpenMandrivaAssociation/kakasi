@@ -66,8 +66,12 @@ install -m 644 $RPM_BUILD_DIR/%{name}-%{version}/doc/kakasi.1.gz \
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if %mdkversion < 200900
 %post -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -p /sbin/ldconfig
+%endif
 
 %files
 %defattr(-, root, root)
