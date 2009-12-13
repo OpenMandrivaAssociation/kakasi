@@ -1,5 +1,5 @@
 %define  version 2.3.4
-%define  release %mkrel 8
+%define  release %mkrel 9
 
 Summary: KAKASI - kanji kana simple inverter
 Name: kakasi
@@ -48,7 +48,7 @@ KAKASIの基本辞書です。
 %setup
 
 %build
-%configure
+%configure2_5x
 make
 
 %install
