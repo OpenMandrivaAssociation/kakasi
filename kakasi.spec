@@ -1,5 +1,5 @@
 %define  version 2.3.4
-%define  release %mkrel 9
+%define  release %mkrel 10
 
 Summary: KAKASI - kanji kana simple inverter
 Name: kakasi
