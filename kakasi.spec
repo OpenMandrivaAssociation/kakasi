@@ -56,9 +56,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %makeinstall
 
-gzip --best $RPM_BUILD_DIR/%{name}-%{version}/doc/kakasi.1
+gzip --best %{_builddir}/%{name}-%{version}/doc/kakasi.1
 mkdir -p $RPM_BUILD_ROOT%{_mandir}/ja/man1
-install -m 644 $RPM_BUILD_DIR/%{name}-%{version}/doc/kakasi.1.gz \
+install -m 644 %{_builddir}/%{name}-%{version}/doc/kakasi.1.gz \
 	$RPM_BUILD_ROOT%{_mandir}/ja/man1
 %if %mdkversion >= 1020
 %multiarch_binaries %{buildroot}%{_bindir}/%{name}-config
