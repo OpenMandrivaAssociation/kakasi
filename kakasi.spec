@@ -1,80 +1,47 @@
-%define  version 2.3.4
-%define  release %mkrel 10
-
-Summary: KAKASI - kanji kana simple inverter
-Name: kakasi
-Version: %{version}
-Release: %{release}
-Source: http://kakasi.namazu.org/stable/kakasi-%{version}.tar.bz2
-URL: http://kakasi.namazu.org/
-License: GPL
-Group: System/Internationalization
-Buildroot: %{_tmppath}/%{name}-%{version}-buildroot
+Summary:	KAKASI - kanji kana simple inverter
+Name:		kakasi
+Version:	2.3.4
+Release:	11
+License:	GPL
+Group:		System/Internationalization
+URL:		http://kakasi.namazu.org/
+Source:		http://kakasi.namazu.org/stable/kakasi-%{version}.tar.bz2
 
 %description
 KAKASI is the language processing filter to convert Kanji characters 
 to Hiragana, Katakana or Romaji(1) and may be helpful to read Japanese 
 documents. Word-splitting patch has merged from version 2.3.0.
 
-%description -l ja
-KAKASI ¤Ï´Á»ú¤«¤Ê¤Þ¤¸¤êÊ¸¤ò¤Ò¤é¤¬¤ÊÊ¸¤ä¥í¡¼¥Þ»úÊ¸¤ËÊÑ´¹¤¹¤ë¤³¤È¤ò
-ÌÜÅª¤È¤·¤ÆºîÀ®¤·¤¿¥×¥í¥°¥é¥à¤È¼­½ñ¤ÎÁí¾Î¤Ç¤¹¡£¤µ¤é¤Ë¡¢¥Ð¡¼¥¸¥ç¥ó 
-2.3.0 ¤«¤é¤Ï¡¢Ê¬¤«¤Á½ñ¤­¥Ñ¥Ã¥Á¤¬¥Þ¡¼¥¸¤µ¤ì¤Þ¤·¤¿¡£
-
 %package devel
-Summary: Header file and libraries of KAKASI
-Group: Development/Other
-Requires: kakasi = %{version}
+Summary:	Header file and libraries of KAKASI
+Group:		Development/Other
+Requires:	kakasi = %{version}-%{release}
 
 %description devel
 Header file and Libraries of KAKASI. 
 
-%description devel -l ja
-KAKASI¤Î¥Ø¥Ã¥À¥Õ¥¡¥¤¥ëµÚ¤Ó¥é¥¤¥Ö¥é¥ê¤Ç¤¹¡£
-
 %package dict
-Summary: The base dictionary of KAKASI
-Group: System/Internationalization
-Obsoletes: kakasidict
-Provides: kakasidict
+Summary:	The base dictionary of KAKASI
+Group:		System/Internationalization
+Provides:	kakasidict
 
 %description dict
 The basic dictionary of KAKASI.
 
-%description dict -l ja
-KAKASI¤Î´ðËÜ¼­½ñ¤Ç¤¹¡£
-
 %prep
-%setup
+%setup -q
 
 %build
-%configure2_5x
+%configure2_5x --disable-static
 make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%makeinstall_std
 
-%makeinstall
-
-gzip --best %{_builddir}/%{name}-%{version}/doc/kakasi.1
-mkdir -p $RPM_BUILD_ROOT%{_mandir}/ja/man1
-install -m 644 %{_builddir}/%{name}-%{version}/doc/kakasi.1.gz \
-	$RPM_BUILD_ROOT%{_mandir}/ja/man1
-%if %mdkversion >= 1020
-%multiarch_binaries %{buildroot}%{_bindir}/%{name}-config
-%endif
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-%if %mdkversion < 200900
-%post -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -p /sbin/ldconfig
-%endif
+mkdir -p %{buildroot}%{_mandir}/ja/man1
+install -m 644 doc/kakasi.1 %{buildroot}%{_mandir}/ja/man1
 
 %files
-%defattr(-, root, root)
 %doc AUTHORS ChangeLog COPYING NEWS README README-ja
 %{_bindir}/kakasi
 %{_bindir}/mkkanwa
@@ -82,23 +49,51 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/rdic_conv
 %{_bindir}/wx2_conv
 %{_libdir}/libkakasi.so.*
-%{_mandir}/ja/man1/kakasi.*
+%{_mandir}/ja/man1/kakasi.1*
 %{_datadir}/kakasi/itaijidict
 
 %files devel
-%defattr(-, root, root)
 %{_bindir}/kakasi-config
-%if %mdkversion >= 1020
-%multiarch %{multiarch_bindir}/%{name}-config
-%endif
 %{_libdir}/libkakasi.so
-%{_libdir}/libkakasi.a
-%{_libdir}/libkakasi.la
 %{_includedir}/libkakasi.h
 
 %files dict
-%defattr(-, root, root)
 %{_datadir}/kakasi/kanwadict
 
+%changelog
+* Mon Dec 06 2010 Oden Eriksson <oeriksson@mandriva.com> 2.3.4-10mdv2011.0
++ Revision: 612521
+- the mass rebuild of 2010.1 packages
 
+* Sun Dec 13 2009 Jè¾¿ræ‹…me Brenier <incubusss@mandriva.org> 2.3.4-9mdv2010.1
++ Revision: 478049
+- use %%configure2_5x
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Fri Jul 25 2008 Thierry Vignaud <tv@mandriva.org> 2.3.4-7mdv2009.0
++ Revision: 247489
+- rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Wed Jan 02 2008 Olivier Blin <oblin@mandriva.com> 2.3.4-5mdv2008.1
++ Revision: 140829
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+    - fix man pages
+
+
+* Sun Jul 16 2006 Nicolas Lcureuil <neoclust@mandriva.org> 2.3.4-4mdv2007.0
+- Rebuild
+
+* Wed Apr 27 2005 Nicolas Lcureuil <neoclust@mandriva.org> 2.3.4-3mdk
+- Fix MultiArch
+
+* Mon Feb 23 2004 Lenny Cartier <lenny@mandrakesoft.com> 2.3.4-2mdk
+- rebuild
 
