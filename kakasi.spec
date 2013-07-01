@@ -1,4 +1,4 @@
-Summary:	KAKASI - kanji kana simple inverter
+Summary:	- kanji kana simple inverter
 Name:		kakasi
 Version:	2.3.4
 Release:	11
