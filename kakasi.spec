@@ -1,7 +1,7 @@
 Summary:	Kanji kana simple inverter
 Name:		kakasi
 Version:	2.3.4
-Release:	12
+Release:	13
 License:	GPL
 Group:		System/Internationalization
 URL:		http://kakasi.namazu.org/
