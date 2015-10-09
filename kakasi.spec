@@ -1,11 +1,11 @@
-Summary:	Kanji kana simple inverter
+Summary:	KAKASI - kanji kana simple inverter
 Name:		kakasi
 Version:	2.3.4
 Release:	13
 License:	GPL
 Group:		System/Internationalization
 URL:		http://kakasi.namazu.org/
-Source:		http://kakasi.namazu.org/stable/kakasi-%{version}.tar.bz2
+Source:		http://kakasi.namazu.org/stable/kakasi-%{version}.tar.gz
 
 %description
 KAKASI is the language processing filter to convert Kanji characters 
@@ -59,41 +59,4 @@ install -m 644 doc/kakasi.1 %{buildroot}%{_mandir}/ja/man1
 
 %files dict
 %{_datadir}/kakasi/kanwadict
-
-%changelog
-* Mon Dec 06 2010 Oden Eriksson <oeriksson@mandriva.com> 2.3.4-10mdv2011.0
-+ Revision: 612521
-- the mass rebuild of 2010.1 packages
-
-* Sun Dec 13 2009 J辿r担me Brenier <incubusss@mandriva.org> 2.3.4-9mdv2010.1
-+ Revision: 478049
-- use %%configure2_5x
-
-  + Thierry Vignaud <tv@mandriva.org>
-    - rebuild
-
-* Fri Jul 25 2008 Thierry Vignaud <tv@mandriva.org> 2.3.4-7mdv2009.0
-+ Revision: 247489
-- rebuild
-
-  + Pixel <pixel@mandriva.com>
-    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
-
-* Wed Jan 02 2008 Olivier Blin <oblin@mandriva.com> 2.3.4-5mdv2008.1
-+ Revision: 140829
-- restore BuildRoot
-
-  + Thierry Vignaud <tv@mandriva.org>
-    - kill re-definition of %%buildroot on Pixel's request
-    - fix man pages
-
-
-* Sun Jul 16 2006 Nicolas Lcureuil <neoclust@mandriva.org> 2.3.4-4mdv2007.0
-- Rebuild
-
-* Wed Apr 27 2005 Nicolas Lcureuil <neoclust@mandriva.org> 2.3.4-3mdk
-- Fix MultiArch
-
-* Mon Feb 23 2004 Lenny Cartier <lenny@mandrakesoft.com> 2.3.4-2mdk
-- rebuild
 
