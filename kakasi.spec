@@ -4,7 +4,7 @@ Version:	2.3.4
 Release:	13
 License:	GPL
 Group:		System/Internationalization
-URL:		http://kakasi.namazu.org/
+URL:		https://kakasi.namazu.org/
 Source:		http://kakasi.namazu.org/stable/kakasi-%{version}.tar.gz
 
 %description
