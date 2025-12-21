@@ -7,6 +7,11 @@ Group:		System/Internationalization
 URL:		https://kakasi.namazu.org/
 Source:		http://kakasi.namazu.org/stable/kakasi-%{version}.tar.gz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 %description
 KAKASI is the language processing filter to convert Kanji characters 
 to Hiragana, Katakana or Romaji(1) and may be helpful to read Japanese 
